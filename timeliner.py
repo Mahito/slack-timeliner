@@ -12,8 +12,8 @@ def get_start_to_end():
     today = datetime.now()
     end = datetime(today.year, today.month, today.day, today.hour)
     
-    # Report on the number of posts per day 9:00 AM
-    if end.hour == 9:
+    # Report on the number of posts per day 9:00 AM JST(UTC+9)
+    if end.hour == 0:
         start = (end - timedelta(1))
         span = 24
     else:
