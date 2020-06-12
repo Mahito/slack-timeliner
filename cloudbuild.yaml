@@ -7,9 +7,9 @@ steps:
       - streaming
       - --region=asia-northeast1
       - --trigger-http
-      - --set-env-vars=BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
+      - --set-env-vars=BQ_DATASET=$_BQ_DATASET,BQ_TABLE=$_BQ_TABLE
       - --source=streaming
-      - --runtime=python38
+      - --runtime=python37
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
@@ -19,6 +19,6 @@ steps:
       - report
       - --region=asia-northeast1
       - --trigger-http
-      - --set-env-vars=SLACK_REPORT_CHANNEL=_SLACK_REPORT_CHANNEL,BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
+      - --set-env-vars=SLACK_REPORT_CHANNEL=$_SLACK_REPORT_CHANNEL,BQ_DATASET=$_BQ_DATASET,BQ_TABLE=$_BQ_TABLE
       - --source=report
-      - --runtime=python38
+      - --runtime=python37
