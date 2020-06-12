@@ -5,9 +5,10 @@ steps:
       - functions
       - deploy
       - streaming
+      - --region=asia-northeast1
       - --trigger-http
       - --set-env-vars=BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
-      - --source=./streaming.py
+      - --source=streaming
       - --runtime=python38
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -16,7 +17,8 @@ steps:
       - functions
       - deploy
       - report
+      - --region=asia-northeast1
       - --trigger-http
       - --set-env-vars=SLACK_REPORT_CHANNEL=_SLACK_REPORT_CHANNEL,BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
-      - --source=./timeliner.py
+      - --source=report
       - --runtime=python38
