@@ -7,7 +7,7 @@ steps:
       - streaming
       - --trigger-http
       - --set-env-vars=BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
-      - --source=streaming.py
+      - --source=./streaming.py
       - --runtime=python38
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -18,5 +18,5 @@ steps:
       - report
       - --trigger-http
       - --set-env-vars=SLACK_REPORT_CHANNEL=_SLACK_REPORT_CHANNEL,BQ_DATASET=_BQ_DATASET,BQ_TABLE=_BQ_TABLE
-      - --source=timeliner.py
+      - --source=./timeliner.py
       - --runtime=python38
