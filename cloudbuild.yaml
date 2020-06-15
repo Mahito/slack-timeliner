@@ -16,9 +16,10 @@ steps:
       - gcloud
       - functions
       - deploy
-      - report
+      - slack-timeliner-report
+      - --entry-point=report
       - --region=asia-northeast1
       - --trigger-http
-      - --set-env-vars=SLACK_REPORT_CHANNEL=$_SLACK_REPORT_CHANNEL,BQ_DATASET=$_BQ_DATASET,BQ_TABLE=$_BQ_TABLE
+      - --set-env-vars=SLACK_REPORT_CHANNEL=$_SLACK_REPORT_CHANNEL,BQ_DATASET=$_BQ_DATASET,BQ_TABLE=$_BQ_TABLE,SLACK_API_TOKEN_KEY_NAME=$_SLACK_API_TOKEN_KEY
       - --source=report
       - --runtime=python37

@@ -32,19 +32,19 @@ def create_query(start, end):
         order by post desc
         LIMIT 5"""
 
-    project_id = os.environ["GCP_PROJECT"]
+    project_id = os.environ['GCP_PROJECT']
     dataset = os.environ['BQ_DATASET']
     table = os.environ["BQ_TABLE"]
 
     return query_string.format(project_id, dataset, table, start, end)
 
 
-def access_slack_token(project_id, secret_id, version_id):
+def access_slack_token():
     # Create the Secret Manager client.
     client = secretmanager.SecretManagerServiceClient()
 
     # Build the resource name of the secret version.
-    project_id = os.environ["GCP_PROJECT"]
+    project_id = os.environ['GCP_PROJECT']
     secret_id = os.environ["SLACK_API_TOKEN_KEY_NAME"]
     name = client.secret_version_path(project_id, secret_id, "latest")
 
@@ -79,7 +79,9 @@ def report(request):
             link_names='true',
             text=result
         )
+
+        return make_response(result, 200)
     except Exception as e:
         print(e)
+        return make_response('Fail', 500)
 
-    return make_response(result, 200)
