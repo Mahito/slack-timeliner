@@ -30,10 +30,9 @@ def _event_handler(data):
                 'channel': data['channel'],
                 'timestamp': data['ts'],
             }
-    else:
-        return 200
+            return _insert_into_bigquery(payload)
 
-    return _insert_into_bigquery(payload)
+    return 200
 
 
 def streaming(request):
