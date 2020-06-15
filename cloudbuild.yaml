@@ -4,7 +4,8 @@ steps:
       - gcloud
       - functions
       - deploy
-      - streaming
+      - slack-timeliner
+      - --entry-point=streaming
       - --region=asia-northeast1
       - --trigger-http
       - --set-env-vars=BQ_DATASET=$_BQ_DATASET,BQ_TABLE=$_BQ_TABLE

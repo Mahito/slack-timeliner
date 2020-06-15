@@ -1,4 +1,3 @@
-import json
 import os
 
 from flask import make_response
@@ -11,9 +10,9 @@ def _insert_into_bigquery(json_row):
 
     bq = bigquery.Client()
     table = bq.dataset(dataset).table(table)
-    
+
     errors = bq.insert_rows_json(table,
-                            [json_row])
+                                 [json_row])
     if errors != []:
         print("Error: Data didn't insert to Bigquery")
         return 500
@@ -24,12 +23,13 @@ def _insert_into_bigquery(json_row):
 def _event_handler(data):
     event_type = data.get('type')
     subtype = data.get('subtype')
-    
-    if event_type == 'message' and subtype is None:
-        payload = {
-            'channel': data['channel'],
-            'timestamp': data['ts'],
-        }
+
+    if event_type == 'message':
+        if subtype is None or subtype == 'thread_broadcast':
+            payload = {
+                'channel': data['channel'],
+                'timestamp': data['ts'],
+            }
     else:
         return 200
 
