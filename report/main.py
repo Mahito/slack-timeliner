@@ -69,7 +69,7 @@ def report(request):
         result = 'いま話題のchannel (過去{}時間の投稿数Top5)\n'.format(span)
         rank = 0
         for row in results:
-            data = sc.channels_info(channel=row.channel)
+            data = sc.conversations_info(channel=row.channel)
             channel_name = data['channel']['name']
             rank += 1
             result += '{}. #{} ({} posts)\n'.format(rank, channel_name, row.post)
